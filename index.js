@@ -29,7 +29,8 @@ const getData = async (searchValue) => {
 
 document.getElementById("btn").addEventListener("click", async () => {
     const inf = await getData2(search.value);
-    console.log(inf);
+    // console.log(inf);
+    inf.forEach((book) => createCard(book));
 
     // const title = document.createElement("h2");
     // title.classList.add("title");
@@ -53,7 +54,7 @@ document.getElementById("btn").addEventListener("click", async () => {
 
 const getData2 = async (searchValue) => {
     const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&maxResults=5`,
+        `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&maxResults=20`,
     );
     const data = await response.json();
 
@@ -66,10 +67,33 @@ const getData2 = async (searchValue) => {
         };
     });
 
-    let image = books.map((item) => item.image);
-    let title = books.map((item) => item.title);
-    let author = books.map((item) => item.authors);
-    let description = books.map((item) => item.description);
+    return books;
+};
 
-    return console.log(image, title, author, description);
+const createCard = (book) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const image = document.createElement("img");
+    image.classList.add("image");
+    image.src = book.image || "src / img / Image - Unavailable.jpg";
+
+    const title = document.createElement("h3");
+    title.classList.add("title");
+    title.innerText = book.title;
+
+    const authors = document.createElement("p");
+    authors.classList.add("authors");
+    authors.innerText = book.authors;
+
+    const description = document.createElement("p");
+    description.classList.add("description");
+    description.innerText = book.description;
+
+    card.appendChild(image);
+    card.appendChild(title);
+    card.appendChild(authors);
+    card.appendChild(description);
+
+    document.getElementById("card-container").appendChild(card);
 };
