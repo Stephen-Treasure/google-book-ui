@@ -1,0 +1,32 @@
+body {
+    background: linear-gradient(80deg, #e4f1f5 60%, #acd87e 60%);
+}
+
+.container {
+    display: grid;
+    place-items: center;
+}
+
+.row {
+    display: grid;
+    place-items: center;
+}
+
+#id {
+    display: grid;
+    place-items: center;
+}
+
+#ibtn {
+    display: grid;
+    place-items: center;
+}
+
+.card {
+    height: 400px;
+    width: 300px;
+}
+
+.card-container {
+    background: beige;
+}
