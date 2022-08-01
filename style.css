@@ -3,15 +3,61 @@
   padding: 0px;
 }
 
+body {
+  display: grid;
+  place-items: center;
+  background-color: rgb(47, 107, 107);
+  grid-template-columns: repeat(auto, 10px);
+}
+
+h2 {
+  text-align: center;
+  font-size: 300%;
+  color: antiquewhite;
+}
+
+#input {
+  display: grid;
+  place-items: center;
+}
+
+#card-container {
+  display: flex;
+  overflow: hidden;
+}
+
+input {
+  width: 10rem;
+  height: 2rem;
+  text-align: center;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+button {
+  width: 5rem;
+  height: 3rem;
+  border-radius: 20px;
+  background-color: antiquewhite;
+  color: rgb(47, 107, 107);
+  border: 3px solid black;
+}
+
 .card {
   border: 2px solid black;
   width: 300px;
   height: 500px;
   display: grid;
   overflow: hidden;
+  place-items: center;
+  background-color: bisque;
+  padding: 10px;
+  margin: 10px;
+  float: left;
+  border-radius: 30px;
 }
 
 .card:hover {
-  height: 1000px;
-  width: 600px;
+  height: 800px;
+  width: 350px;
 }
