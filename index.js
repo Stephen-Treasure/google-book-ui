@@ -1,22 +1,26 @@
 document.getElementById("btn").addEventListener("click", async () => {
-    const inf = await getData(search.value);
-    console.log(inf);
-    inf.forEach((book) => createCard(book));
+    const info = await getData(search.value);
+    console.log(info);
+    info.forEach((book) => createCard(book));
 });
 
 const getData = async (searchValue) => {
     const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchValue}`,
+        `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&maxResults=30`,
     );
     const data = await response.json();
 
     let books = data.items.map((book) => {
         return {
             title: book.volumeInfo.title,
-            authors: book.volumeInfo.authors.join(",") || "authors unavaiable",
+            authors: book.volumeInfo?.authors
+                ? book.volumeInfo?.authors.join(",")
+                : "authors unavaiable",
             description:
                 book.volumeInfo.description || "description unavaiable",
-            image: book.volumeInfo.imageLinks,
+            image: book.volumeInfo?.imageLinks
+                ? book.volumeInfo?.imageLinks.thumbnail
+                : "src/img/Unavailable.png",
         };
     });
 
@@ -41,7 +45,7 @@ const createCard = (book) => {
 
     const image = document.createElement("img");
     image.classList.add("image");
-    image.src = book.image.thumbnail;
+    image.src = book.image;
 
     card.appendChild(title);
     card.appendChild(image);
